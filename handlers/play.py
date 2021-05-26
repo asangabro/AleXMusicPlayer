@@ -105,8 +105,7 @@ async def play(_, message: Message):
              [
                         [
                             InlineKeyboardButton(
-                                text="Now Playing",
-                                url=f"{url}")
+                                text="**Currently Playing**")
 
                         ]
                     ]
@@ -123,7 +122,7 @@ async def play(_, message: Message):
 
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/638c20c44ca418c8b2178.jpg"
+        thumb_name = "https://telegra.ph/file/c2114c515c520855a9e37.jpg"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
@@ -131,8 +130,7 @@ async def play(_, message: Message):
                  [
                         [
                             InlineKeyboardButton(
-                                text="Now Playing",
-                                url=f"{url}")
+                                text="**Currently Playing**")
 
                         ]
                     ]
@@ -168,7 +166,7 @@ async def play(_, message: Message):
                 )
         except Exception as e:
             title = "NaN"
-            thumb_name = "https://telegra.ph/file/638c20c44ca418c8b2178.jpg"
+            thumb_name = "https://telegra.ph/file/c2114c515c520855a9e37.jpg"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
