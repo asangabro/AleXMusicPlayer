@@ -103,7 +103,9 @@ async def play(_, message: Message):
 
     keyboard = InlineKeyboardMarkup(
             [
-                
+                [
+                   
+                ]
             ]
         )
 
@@ -116,7 +118,7 @@ async def play(_, message: Message):
                 f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed to play!"
             )
 
-       file_name = get_file_name(audio)
+        file_name = get_file_name(audio)
         title = file_name
         thumb_name = "https://telegra.ph/file/9121051ebaa69418c7af5.jpg"
         thumbnail = thumb_name
@@ -125,7 +127,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
                 [
                     [
-
+                        
 
                     ]
                 ]
@@ -177,7 +179,6 @@ async def play(_, message: Message):
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)     
         file_path = await converter.convert(youtube.download(url))
-    
     else:
         await lel.edit("🔎 **Finding** the song...")
         sender_id = message.from_user.id
@@ -190,7 +191,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += ' ' + str(i)
         print(query)
-        await lel.edit("🎵 **Processing** sounds Pleas Wait...")
+        await lel.edit("🎵 **Processing** sounds...")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
