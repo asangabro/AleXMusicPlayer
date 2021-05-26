@@ -104,19 +104,10 @@ async def play(_, message: Message):
     keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('⏹', 'leave'),
-                    InlineKeyboardButton('⏸', 'puse'),
-                    InlineKeyboardButton('▶️', 'resume'),
-                    InlineKeyboardButton('⏭', 'skip')
-                
+                    InlineKeyboardButton('Now Playing {title}', 'leave')
+
                 ],
-                [
-                    InlineKeyboardButton('Playlist 📖', 'playlist'),
-                
-                ],
-                [       
-                    InlineKeyboardButton("❌ Close",'cls')
-                ]        
+                     
             ]
         )
 
@@ -138,19 +129,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
                 [
                 [
-                    InlineKeyboardButton('⏹', 'leave'),
-                    InlineKeyboardButton('⏸', 'puse'),
-                    InlineKeyboardButton('▶️', 'resume'),
-                    InlineKeyboardButton('⏭', 'skip')
-                
+                    InlineKeyboardButton('Now Playing {title}', 'leave')
+
                 ],
-                [
-                    InlineKeyboardButton('Playlist 📖', 'playlist'),
-                
-                ],
-                [       
-                    InlineKeyboardButton("❌ Close",'cls')
-                ]        
+                     
             ]
         )
         requested_by = message.from_user.first_name
