@@ -97,19 +97,17 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 @errors
 async def play(_, message: Message):
 
-    lel = await message.reply("🔄 **Processing** Sounds...")
+    lel = await message.reply("**Downloading Song...**")
     sender_id = message.from_user.id
     sender_name = message.from_user.first_name
 
     keyboard = InlineKeyboardMarkup(
-             [
-                        [
-                            InlineKeyboardButton(
-                                text="**Currently Playing**")
-
-                        ]
-                    ]
-                )
+              [
+            [
+                InlineKeyboardButton("▶ Currently Playing...", "leave"),
+              
+            ],
+            ])
 
     audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
     url = get_url(message)
@@ -128,13 +126,9 @@ async def play(_, message: Message):
         views = "Locally added"
         keyboard = InlineKeyboardMarkup(
                  [
-                        [
-                            InlineKeyboardButton(
-                                text="**Currently Playing**")
-
-                        ]
-                    ]
-                )
+            [ InlineKeyboardButton("▶ Currently Playing...", "leave"),
+            ],
+            ])
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(
@@ -183,7 +177,7 @@ async def play(_, message: Message):
         await generate_cover(requested_by, title, views, duration, thumbnail)     
         file_path = await converter.convert(youtube.download(url))
     else:
-        await lel.edit("🔎 **Finding** the song...")
+        await lel.edit("🔎 **Finding** the Song...")
         sender_id = message.from_user.id
         user_id = message.from_user.id
         sender_name = message.from_user.first_name
@@ -194,7 +188,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += ' ' + str(i)
         print(query)
-        await lel.edit("🎵 **Processing** sounds...")
+        await lel.edit("**Downloading Song...**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -243,7 +237,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
-        caption="▶️ **Playing** here the song requested by {} via YouTube 🎵".format(
+        caption="▶️ **Playing** Here the Song requested by {} 🎵".format(
         message.from_user.mention()
         ),
     )
