@@ -102,14 +102,15 @@ async def play(_, message: Message):
     sender_name = message.from_user.first_name
 
     keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton('Now Playing {title}', 'leave')
+             [
+                        [
+                            InlineKeyboardButton(
+                                text="Now Playing",
+                                url=f"{url}")
 
-                ],
-                     
-            ]
-        )
+                        ]
+                    ]
+                )
 
     audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
     url = get_url(message)
@@ -127,14 +128,15 @@ async def play(_, message: Message):
         duration = round(audio.duration / 60)
         views = "Locally added"
         keyboard = InlineKeyboardMarkup(
-                [
-                [
-                    InlineKeyboardButton('Now Playing {title}', 'leave')
+                 [
+                        [
+                            InlineKeyboardButton(
+                                text="Now Playing",
+                                url=f"{url}")
 
-                ],
-                     
-            ]
-        )
+                        ]
+                    ]
+                )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(
