@@ -101,13 +101,7 @@ async def play(_, message: Message):
     sender_id = message.from_user.id
     sender_name = message.from_user.first_name
 
-    keyboard = InlineKeyboardMarkup(
-            [
-                [
-                   
-                ]
-            ]
-        )
+   
 
     audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
     url = get_url(message)
@@ -120,18 +114,11 @@ async def play(_, message: Message):
 
         file_name = get_file_name(audio)
         title = file_name
-        thumb_name = "https://telegra.ph/file/9121051ebaa69418c7af5.jpg"
+        thumb_name = "https://telegra.ph/file/638c20c44ca418c8b2178.jpg"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
-        keyboard = InlineKeyboardMarkup(
-                [
-                    [
-                        
-
-                    ]
-                ]
-            )
+        
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(
@@ -163,7 +150,7 @@ async def play(_, message: Message):
                 )
         except Exception as e:
             title = "NaN"
-            thumb_name = "https://telegra.ph/file/9121051ebaa69418c7af5.jpg"
+            thumb_name = "https://telegra.ph/file/638c20c44ca418c8b2178.jpg"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
@@ -213,16 +200,7 @@ async def play(_, message: Message):
             print(str(e))
             return
 
-        keyboard = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="Watch On YouTube",
-                            url=f"{url}")
-
-                    ]
-                ]
-            )
+        
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(youtube.download(url))
