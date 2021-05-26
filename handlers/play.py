@@ -137,14 +137,22 @@ async def play(_, message: Message):
         views = "Locally added"
         keyboard = InlineKeyboardMarkup(
                 [
-                    [
-                        InlineKeyboardButton(
-                            text="...",
-                            url=f"https://t.me/")
-
-                    ]
-                ]
-            )
+                [
+                    InlineKeyboardButton('⏹', 'leave'),
+                    InlineKeyboardButton('⏸', 'puse'),
+                    InlineKeyboardButton('▶️', 'resume'),
+                    InlineKeyboardButton('⏭', 'skip')
+                
+                ],
+                [
+                    InlineKeyboardButton('Playlist 📖', 'playlist'),
+                
+                ],
+                [       
+                    InlineKeyboardButton("❌ Close",'cls')
+                ]        
+            ]
+        )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(
