@@ -116,7 +116,7 @@ async def play(_, message: Message):
                 f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed to play!"
             )
 
-        file_name = get_file_name(audio)
+       file_name = get_file_name(audio)
         title = file_name
         thumb_name = "https://telegra.ph/file/9121051ebaa69418c7af5.jpg"
         thumbnail = thumb_name
@@ -124,7 +124,10 @@ async def play(_, message: Message):
         views = "Locally added"
         keyboard = InlineKeyboardMarkup(
                 [
-                   
+                    [
+
+
+                    ]
                 ]
             )
         requested_by = message.from_user.first_name
@@ -150,7 +153,7 @@ async def play(_, message: Message):
                     [
                         [
                             InlineKeyboardButton(
-                                text="Watch On YouTube 😉",
+                                text="Watch On YouTube",
                                 url=f"{url}")
 
                         ]
@@ -163,12 +166,18 @@ async def play(_, message: Message):
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
                     [
-                        
+                        [
+                            InlineKeyboardButton(
+                                text="Watch On YouTube",
+                                url=f"https://youtube.com")
+
+                        ]
                     ]
                 )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)     
         file_path = await converter.convert(youtube.download(url))
+    
     else:
         await lel.edit("🔎 **Finding** the song...")
         sender_id = message.from_user.id
