@@ -104,11 +104,19 @@ async def play(_, message: Message):
     keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        text="....",
-                        url="https://t.me/")
-                   
-                ]
+                    InlineKeyboardButton('⏹', 'leave'),
+                    InlineKeyboardButton('⏸', 'puse'),
+                    InlineKeyboardButton('▶️', 'resume'),
+                    InlineKeyboardButton('⏭', 'skip')
+                
+                ],
+                [
+                    InlineKeyboardButton('Playlist 📖', 'playlist'),
+                
+                ],
+                [       
+                    InlineKeyboardButton("❌ Close",'cls')
+                ]        
             ]
         )
 
