@@ -101,7 +101,16 @@ async def play(_, message: Message):
     sender_id = message.from_user.id
     sender_name = message.from_user.first_name
 
-   
+    keyboard = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text="Channel",
+                        url="https://t.me/Infinity_BOTs")
+                   
+                ]
+            ]
+        )
 
     audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
     url = get_url(message)
@@ -118,7 +127,16 @@ async def play(_, message: Message):
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "Locally added"
-        
+        keyboard = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Channel",
+                            url=f"https://t.me/Infinity_Bots")
+
+                    ]
+                ]
+            )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(
@@ -200,7 +218,16 @@ async def play(_, message: Message):
             print(str(e))
             return
 
-        
+        keyboard = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Watch On YouTube",
+                            url=f"{url}")
+
+                    ]
+                ]
+            )
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)  
         file_path = await converter.convert(youtube.download(url))
